@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import logoWhite from '../assets/logo-white.svg';
 import './Footer.css';
 
 export const Footer = () => {
@@ -12,7 +13,7 @@ export const Footer = () => {
       
       <div className="container footer-container">
         <div className="footer-brand animate-fade-in delay-100">
-          <img src="/src/assets/logo-white.svg" alt="Prime Care Logo" className="footer-logo" />
+          <img src={logoWhite} alt="Prime Care Logo" className="footer-logo" />
           <p className="footer-desc">
             {t('hero_subtitle', 'Leading healthcare services with absolute professionalism and care. Empowering the medical sector with the latest equipment and modern technologies.')}
           </p>

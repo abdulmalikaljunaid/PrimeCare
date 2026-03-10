@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from './Button';
 import { HeartPulse, ShieldCheck, ArrowRight, ArrowLeft } from 'lucide-react';
+import heroBg from '../assets/hero_bg.png';
 import './Hero.css';
 
 export const Hero = () => {
@@ -37,7 +38,7 @@ export const Hero = () => {
         <div className="hero-visual animate-fade-in delay-300">
           <div className="hero-image-wrapper">
              {/* Note: In a real environment, replace this with a high quality image. Using the provided UI asset. */}
-             <img src="/src/assets/hero_bg.png" alt="Prime Care Facilities" className="hero-image" />
+             <img src={heroBg} alt="Prime Care Facilities" className="hero-image" />
              
              {/* Floating Badges */}
              <div className="hero-badge badge-1">

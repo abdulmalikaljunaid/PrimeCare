@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Shield, Clock, HeartPulse } from 'lucide-react';
+import aboutBg from '../assets/about_bg.png';
 import './About.css';
 
 export const About = () => {
@@ -25,7 +26,7 @@ export const About = () => {
             <div className="about-decorative-blob"></div>
             <div className="about-image">
                <div className="about-img-inner">
-                 <img src="/src/assets/about_bg.png" alt="Prime Care Facilities" />
+                 <img src={aboutBg} alt="Prime Care Facilities" />
                </div>
             </div>
             <div className="experience-badge glass-dark">

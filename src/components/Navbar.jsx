@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../context/LanguageContext';
 import { Phone, Globe, Menu, X } from 'lucide-react';
 import { Button } from './Button';
+import logo from '../assets/logo.svg';
 import './Navbar.css';
 
 export const Navbar = () => {
@@ -17,7 +18,7 @@ export const Navbar = () => {
       <nav className="navbar">
         <div className="navbar-logo">
           <a href="#home">
-            <img src="/src/assets/logo.svg" alt="Prime Care Logo" />
+            <img src={logo} alt="Prime Care Logo" />
           </a>
         </div>
         
