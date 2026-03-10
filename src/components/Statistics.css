@@ -1,0 +1,214 @@
+/* Premium Elegant Statistics Section */
+.statistics-section {
+  position: relative;
+  /* Deep, rich background mixing dark charcoal with a hint of warmth */
+  background: linear-gradient(135deg, var(--secondary) 0%, #1a1718 100%);
+  padding: 5rem 0;
+  margin: 3rem 0;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle elegant glow lines at top and bottom */
+.statistics-section::before,
+.statistics-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 194, 13, 0.3), transparent);
+}
+
+.statistics-section::before { top: 0; }
+.statistics-section::after { bottom: 0; }
+
+/* Extremely soft ambient background glow */
+.stat-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255, 194, 13, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grid Layout - Open & Airy */
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  gap: 1rem;
+}
+
+/* Elegant Item Structure */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1rem;
+}
+
+/* Minimalist vertical dividers */
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 0;
+  width: 1px;
+  height: 70%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 0.4s ease;
+}
+
+[dir="rtl"] .stat-item:not(:last-child)::after {
+  right: auto;
+  left: 0;
+}
+
+/* Hover Interaction - Refined */
+.stat-item:hover {
+  transform: translateY(-8px);
+}
+
+.stat-item:hover:not(:last-child)::after {
+  background: linear-gradient(to bottom, transparent, rgba(255, 194, 13, 0.3), transparent);
+}
+
+/* Elegant Icon Treatment */
+.stat-icon-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-icon {
+  color: var(--primary);
+  opacity: 0.9;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.15);
+  opacity: 1;
+  filter: drop-shadow(0 0 15px rgba(255, 194, 13, 0.4));
+}
+
+/* Typography - Delicate & Premium */
+.stat-number {
+  font-family: var(--font-en);
+  font-size: 3.75rem;
+  font-weight: 300; /* Lighter weight for modern elegance */
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  letter-spacing: -0.03em;
+}
+
+.stat-number-text {
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.stat-highlight {
+  color: var(--primary);
+  font-weight: 400;
+}
+
+.stat-prefix {
+  font-size: 2.5rem;
+  margin-right: 0.2rem;
+  opacity: 0.9;
+}
+
+.stat-suffix {
+  font-size: 2.5rem;
+  margin-left: 0.2rem;
+  opacity: 0.9;
+}
+
+/* Title - Clean & Balanced */
+.stat-title {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  transition: all 0.4s ease;
+}
+
+.stat-item:hover .stat-title {
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 2.5px;
+}
+
+/* Entry Animations */
+.opacity-0 {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-stat {
+  animation: elegantFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes elegantFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive Graceful Degradation */
+@media (max-width: 1024px) {
+  .stat-number { font-size: 3rem; }
+  .stat-prefix, .stat-suffix { font-size: 2rem; }
+  .stat-title { font-size: 0.875rem; letter-spacing: 1px; }
+  .stat-item:hover .stat-title { letter-spacing: 1.5px; }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem 1rem;
+  }
+  .stat-item {
+    flex: 0 0 45%;
+  }
+  /* Remove dividers for wrapped layout */
+  .stat-item:nth-child(even)::after,
+  .stat-item:nth-child(odd)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .statistics-section { padding: 4rem 0; }
+  .stats-grid { flex-direction: column; gap: 3.5rem; }
+  .stat-item { flex: 0 0 100%; width: 100%; }
+  .stat-number { font-size: 3.5rem; }
+}
