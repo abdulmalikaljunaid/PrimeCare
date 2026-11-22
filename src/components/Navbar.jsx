@@ -9,7 +9,6 @@ import './Navbar.css';
 const NAV_SECTIONS = [
   { id: 'home', key: 'nav_home' },
   { id: 'about', key: 'nav_about' },
-  { id: 'services', key: 'nav_services' },
   { id: 'devices', key: 'nav_devices' },
   { id: 'partners', key: 'nav_partners' },
 ];

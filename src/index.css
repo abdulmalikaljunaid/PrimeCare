@@ -38,11 +38,12 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
   --font-main: var(--font-ar);
 
-  /* Motion — one exponential curve, quiet & decisive */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Motion — Emil Kowalski strong ease-out, responsive & restrained */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --dur-fast: 160ms;
-  --dur-med: 280ms;
-  --dur-slow: 460ms;
+  --dur-med: 240ms;
+  --dur-slow: 380ms;
 
   /* Geometry — crisp instrument radii */
   --radius-xs: 4px;
@@ -289,7 +290,7 @@ textarea {
 }
 
 .btn:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 .btn:disabled {
@@ -304,20 +305,10 @@ textarea {
   border-color: var(--ink);
 }
 
-.btn-primary:hover:not(:disabled) {
-  background: #2f2a2c;
-  border-color: #2f2a2c;
-}
-
 .btn-gold {
   background: var(--gold);
   color: var(--ink);
   border-color: var(--gold);
-}
-
-.btn-gold:hover:not(:disabled) {
-  background: var(--gold-hover);
-  border-color: var(--gold-hover);
 }
 
 .btn-ghost {
@@ -326,21 +317,36 @@ textarea {
   border-color: var(--line-strong);
 }
 
-.btn-ghost:hover:not(:disabled) {
-  background: var(--surface-subtle);
-  border-color: var(--ink);
-}
-
 .btn-dark-ghost {
   background: transparent;
   color: var(--ink-on-dark);
   border-color: var(--line-dark-strong);
 }
 
-.btn-dark-ghost:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--gold);
-  color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover:not(:disabled) {
+    background: #2f2a2c;
+    border-color: #2f2a2c;
+    transform: translateY(-1px);
+  }
+
+  .btn-gold:hover:not(:disabled) {
+    background: var(--gold-hover);
+    border-color: var(--gold-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    background: var(--surface-subtle);
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .btn-dark-ghost:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
 }
 
 /* Skip link & screen reader utility */

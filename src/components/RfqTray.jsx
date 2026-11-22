@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FileSpreadsheet, GitCompareArrows, Trash2 } from 'lucide-react';
+import { FileSpreadsheet, GitCompareArrows, Trash2, X } from 'lucide-react';
 import { useRfq } from '../context/RfqContext';
 import './RfqTray.css';
 
 export const RfqTray = () => {
   const { t } = useTranslation();
-  const { rfqItems, clearRfq, compareIds, setCompareOpen } = useRfq();
+  const { rfqItems, clearRfq, compareIds, setCompareOpen, clearCompare } = useRfq();
 
   if (rfqItems.length === 0 && compareIds.length === 0) return null;
 
@@ -26,13 +26,25 @@ export const RfqTray = () => {
               <span>{t('rfq_tray_items')}</span>
             </div>
           )}
+
           {compareIds.length > 0 && (
-            <button type="button" className="btn btn-dark-ghost tray-btn" onClick={handleOpenCompare}>
-              <GitCompareArrows size={16} aria-hidden="true" />
-              <span>
-                {t('compare_open_btn')} ({compareIds.length})
-              </span>
-            </button>
+            <div className="tray-compare-group">
+              <button type="button" className="btn btn-dark-ghost tray-btn" onClick={handleOpenCompare}>
+                <GitCompareArrows size={16} aria-hidden="true" />
+                <span>
+                  {t('compare_open_btn')} ({compareIds.length})
+                </span>
+              </button>
+              <button
+                type="button"
+                className="tray-dismiss-btn"
+                onClick={clearCompare}
+                aria-label={t('compare_clear')}
+                title={t('compare_clear')}
+              >
+                <X size={16} aria-hidden="true" />
+              </button>
+            </div>
           )}
         </div>
 
@@ -59,4 +71,3 @@ export const RfqTray = () => {
     </aside>
   );
 };
-

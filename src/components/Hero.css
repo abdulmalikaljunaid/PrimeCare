@@ -11,8 +11,20 @@
   align-items: center;
 }
 
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-copy {
   max-width: 60ch;
+  animation: heroEnter var(--dur-slow) var(--ease-out) both;
 }
 
 .hero-title {
@@ -75,6 +87,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  animation: heroEnter var(--dur-slow) var(--ease-out) 70ms both;
 }
 
 .stage-header {
@@ -124,11 +137,13 @@
 
 .stage-canvas {
   position: relative;
-  height: clamp(250px, 28vw, 330px);
-  display: grid;
-  place-items: center;
+  height: clamp(240px, 26vw, 310px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1.5rem 2rem;
   background: #ffffff;
+  overflow: hidden;
 }
 
 .stage-tick {
@@ -139,6 +154,7 @@
   border-style: solid;
   border-width: 0;
   pointer-events: none;
+  z-index: 2;
 }
 .tick-tl {
   top: 14px;
@@ -167,22 +183,33 @@
 
 @keyframes instrumentReveal {
   from {
-    opacity: 0.35;
-    transform: translateY(8px) scale(0.985);
+    opacity: 0.45;
+    filter: blur(2px);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    filter: blur(0);
+    transform: scale(1);
   }
 }
 
 .stage-image {
-  max-height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  width: auto;
-  height: auto;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center;
   animation: instrumentReveal var(--dur-med) var(--ease-out);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .stage-canvas:hover .stage-image {
+    transform: scale(1.025);
+  }
 }
 
 .stage-image.is-multiply {

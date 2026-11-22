@@ -33,9 +33,6 @@ export const Footer = ({ onNavigateCatalog }) => {
               <a href="#about">{t('nav_about')}</a>
             </li>
             <li>
-              <a href="#services">{t('nav_services')}</a>
-            </li>
-            <li>
               <a href="#devices">{t('nav_devices')}</a>
             </li>
             <li>

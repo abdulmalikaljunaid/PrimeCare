@@ -1,119 +1,127 @@
-.about-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
+.about-band {
+  background: var(--ink);
+  color: var(--ink-on-dark);
+  padding-block: clamp(3.5rem, 5.5vw, 4.75rem);
+  border-bottom: 1px solid var(--line-dark);
+  scroll-margin-top: calc(var(--header-h) + 12px);
 }
 
-.about-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(2.5rem, 5vw, 4.5rem);
-  align-items: start;
-}
-
-.about-narrative h2 {
-  font-size: clamp(1.95rem, 3.2vw, 2.7rem);
-  margin-block-end: 1.15rem;
-}
-
-.about-lead {
-  font-size: 1.08rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.65;
-  margin-block-end: 1rem;
-  max-width: 54ch;
-}
-
-.about-body {
-  font-size: 0.98rem;
-  color: var(--ink-muted);
-  line-height: 1.8;
-  margin-block-end: 2rem;
-  max-width: 56ch;
-}
-
-.about-hq {
+.about-top {
   display: flex;
-  align-items: flex-start;
-  gap: 0.9rem;
-  padding-block-start: 1.4rem;
-  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2.5rem;
+  padding-block-end: 2rem;
+  margin-block-end: 2rem;
+  border-bottom: 1px solid var(--line-dark);
 }
 
-.about-hq-icon {
-  flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+.about-top h2 {
+  color: #ffffff;
+  font-size: clamp(1.7rem, 2.8vw, 2.35rem);
+  max-width: 28ch;
+}
+
+.about-hq-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-on-dark-muted);
+}
+
+.about-hq-inline svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.pillars-strip {
   display: grid;
-  place-items: center;
-  border-radius: var(--radius-sm);
-  background: var(--gold-tint);
-  color: var(--gold-ink);
-  border: 1px solid var(--gold-line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.about-hq-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-  margin-block-end: 0.2rem;
+.pillar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-inline: clamp(1.1rem, 2.2vw, 2rem);
+  border-inline-end: 1px solid var(--line-dark);
 }
 
-.about-hq-value {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.5;
+.pillar-col:first-child {
+  padding-inline-start: 0;
 }
 
-/* 2x2 architectural hairline matrix — no nested boxes */
-.commitments-panel {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
-  border-inline-start: 1px solid var(--line);
+.pillar-col:last-child {
+  border-inline-end: none;
+  padding-inline-end: 0;
 }
 
-.commitment-cell {
-  padding: clamp(1.4rem, 2.4vw, 2rem);
-  border-bottom: 1px solid var(--line);
-  border-inline-end: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.commitment-icon {
+.pillar-icon {
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  color: var(--ink);
-  margin-block-end: 1rem;
+  border: 1px solid var(--line-dark-strong);
+  color: var(--gold);
+  margin-block-end: 0.35rem;
 }
 
-.commitment-cell h3 {
+.pillar-col h3 {
+  color: #ffffff;
   font-size: 1.08rem;
   font-weight: 600;
-  color: var(--ink);
-  margin-block-end: 0.55rem;
 }
 
-.commitment-cell p {
-  font-size: 0.9rem;
-  color: var(--ink-muted);
-  line-height: 1.7;
+.pillar-col p {
+  color: var(--ink-on-dark-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  max-width: 36ch;
 }
 
-@media (max-width: 980px) {
-  .about-layout {
-    grid-template-columns: 1fr;
+.pillar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-block-start: auto;
+  padding-block-start: 0.5rem;
+  min-height: 40px;
+  width: fit-content;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.pillar-link:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pillar-link:hover {
+    text-decoration: underline;
   }
 }
 
-@media (max-width: 600px) {
-  .commitments-panel {
+@media (max-width: 860px) {
+  .pillars-strip {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .pillar-col {
+    padding-inline: 0;
+    padding-block-end: 1.75rem;
+    border-inline-end: none;
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .pillar-col:last-child {
+    padding-block-end: 0;
+    border-bottom: none;
   }
 }

@@ -82,7 +82,7 @@ export const Contact = () => {
       id: compatibleReagents.id,
       name: pick(compatibleReagents.title, lang),
       manufacturer: 'B&E Bio-Technology',
-      category: t('srv_2_title'),
+      category: t('pillar_2_title'),
       type: 'reagents',
     };
     return [...pItems, ...fItems, rItem];

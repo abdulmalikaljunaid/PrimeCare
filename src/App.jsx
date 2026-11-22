@@ -4,8 +4,6 @@ import SEO from './components/SEO';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { Statistics } from './components/Statistics';
-import { ServicesPreview } from './components/ServicesPreview';
 import { Devices } from './components/Devices';
 import { Partners } from './components/Partners';
 import { Testimonials } from './components/Testimonials';
@@ -35,9 +33,7 @@ function App() {
       <Navbar />
       <main id="main-content">
         <Hero onInspectDevice={handleNavigateCatalog} />
-        <About />
-        <Statistics />
-        <ServicesPreview onNavigateCatalog={handleNavigateCatalog} />
+        <About onNavigateCatalog={handleNavigateCatalog} />
         <Devices
           activeTab={activeCatalogTab}
           onTabChange={setActiveCatalogTab}

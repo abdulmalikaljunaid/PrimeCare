@@ -7,6 +7,14 @@
   color: var(--ink-on-dark);
   border-top: 2px solid var(--gold);
   box-shadow: 0 -10px 30px rgba(24, 22, 23, 0.22);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform var(--dur-med) var(--ease-out), opacity var(--dur-med) var(--ease-out);
+
+  @starting-style {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
 .rfq-tray-inner {
@@ -15,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1.25rem;
-  padding-block: 0.75rem;
+  padding-block: 0.7rem;
 }
 
 .rfq-tray-info,
@@ -47,10 +55,38 @@
   font-size: 0.88rem;
 }
 
+.tray-compare-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .tray-btn {
   min-height: 40px;
-  padding: 0.5rem 1.05rem;
+  padding: 0.5rem 1rem;
   font-size: 0.88rem;
+}
+
+.tray-dismiss-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-dark-strong);
+  background: transparent;
+  color: var(--ink-on-dark-muted);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.tray-dismiss-btn:active {
+  transform: scale(0.95);
+}
+
+.tray-dismiss-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .tray-clear-btn {
@@ -72,4 +108,3 @@
   color: #ffffff;
   border-color: var(--line-dark-strong);
 }
-

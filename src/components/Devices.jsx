@@ -225,7 +225,7 @@ function FamilyCard({ family, lang, t }) {
   );
 }
 
-function CompareMatrix({ items, lang, t, onClose, onClear }) {
+function CompareMatrix({ items, lang, t, onFinish }) {
   const { isInRfq, toggleRfq } = useRfq();
 
   const rows = [
@@ -247,17 +247,14 @@ function CompareMatrix({ items, lang, t, onClose, onClear }) {
           <p>{t('compare_subtitle')}</p>
         </div>
         <div className="compare-head-actions">
-          <button type="button" className="pc-btn pc-btn-ghost" onClick={onClear}>
-            {t('compare_clear')}
-          </button>
           <button
             type="button"
-            className="pc-btn pc-btn-ghost"
-            onClick={onClose}
-            aria-label={t('compare_close')}
+            className="pc-btn pc-btn-primary"
+            onClick={onFinish}
+            aria-label={t('compare_finish')}
           >
             <X size={16} aria-hidden="true" />
-            <span>{t('compare_close')}</span>
+            <span>{t('compare_finish')}</span>
           </button>
         </div>
       </div>
@@ -517,8 +514,7 @@ export const Devices = ({ activeTab, onTabChange, searchQuery, onSearchChange })
             items={comparedProducts}
             lang={lang}
             t={t}
-            onClose={() => setCompareOpen(false)}
-            onClear={clearCompare}
+            onFinish={clearCompare}
           />
         )}
 
@@ -580,7 +576,7 @@ export const Devices = ({ activeTab, onTabChange, searchQuery, onSearchChange })
                       id: compatibleReagents.id,
                       name: pick(compatibleReagents.title, lang),
                       manufacturer: 'B&E Bio-Technology',
-                      category: t('srv_2_title'),
+                      category: t('pillar_2_title'),
                       type: 'reagents',
                     })
                   }
@@ -703,7 +699,7 @@ export const Devices = ({ activeTab, onTabChange, searchQuery, onSearchChange })
                         id: compatibleReagents.id,
                         name: pick(compatibleReagents.title, lang),
                         manufacturer: 'B&E Bio-Technology',
-                        category: t('srv_2_title'),
+                        category: t('pillar_2_title'),
                         type: 'reagents',
                       })
                     }
