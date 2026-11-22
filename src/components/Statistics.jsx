@@ -1,142 +1,95 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Award, Users, Stethoscope, Clock } from 'lucide-react';
 import './Statistics.css';
 
-const Counter = ({ value }) => {
-  const [count, setCount] = useState(0);
+const Counter = ({ target, active }) => {
+  const [display, setDisplay] = useState(target);
 
   useEffect(() => {
-    let startTimestamp = null;
-    const duration = 2500; // 2.5 seconds
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // easeOutQuart curve for smooth deceleration
-      const easeProgress = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeProgress * value));
+    if (!active) return undefined;
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    if (reduced) {
+      return undefined;
+    }
+
+    let rafId = 0;
+    let start = null;
+    const duration = 900;
+
+    const tick = (ts) => {
+      if (start === null) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(eased * target));
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        rafId = window.requestAnimationFrame(tick);
       } else {
-        setCount(value);
+        setDisplay(target);
       }
     };
-    window.requestAnimationFrame(step);
-  }, [value]);
 
-  return <>{count}</>;
+    rafId = window.requestAnimationFrame(tick);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, [target, active]);
+
+  return <>{display}</>;
 };
 
 export const Statistics = () => {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasRevealed, setHasRevealed] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return undefined;
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
+        if (entries[0]?.isIntersecting) {
+          setHasRevealed(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const stats = [
-    { 
-      id: 1, 
-      icon: <Award size={40} className="stat-icon" strokeWidth={1.5} />, 
-      value: t('stats_years', '+15'), 
-      label: t('stats_years_desc', 'عاماً من التميز الطبي') 
-    },
-    { 
-      id: 2, 
-      icon: <Users size={40} className="stat-icon" strokeWidth={1.5} />, 
-      value: t('stats_clients', '+50'), 
-      label: t('stats_clients_desc', 'منشأة صحية متعاونة') 
-    },
-    { 
-      id: 3, 
-      icon: <Stethoscope size={40} className="stat-icon" strokeWidth={1.5} />, 
-      value: t('stats_devices', '+100k'), 
-      label: t('stats_devices_desc', 'جهاز ومستلزم تم توريده') 
-    },
-    { 
-      id: 4, 
-      icon: <Clock size={40} className="stat-icon" strokeWidth={1.5} />, 
-      value: t('stats_support', '24/7'), 
-      label: t('stats_support_desc', 'دعم هندسي وفني') 
-    }
+    { id: 'years', raw: t('stats_years_val'), num: 15, suffix: '+', label: t('stats_years_label') },
+    { id: 'clients', raw: t('stats_clients_val'), num: 50, suffix: '+', label: t('stats_clients_label') },
+    { id: 'devices', raw: t('stats_devices_val'), num: 100, suffix: 'k+', label: t('stats_devices_label') },
+    { id: 'support', raw: t('stats_support_val'), num: null, suffix: '', label: t('stats_support_label') },
   ];
 
-  const formatValue = (val) => {
-    // Exception for values like 24/7
-    if (val.includes('/')) {
-      return <span className="stat-number-text">{val}</span>;
-    }
-    
-    // Parse the prefix, number, and suffix
-    const match = val.match(/^([^\d]*)([\d.,]+)([^\d]*)$/);
-    if (match) {
-      const prefix = match[1];
-      const numStr = match[2];
-      const suffix = match[3];
-      const num = parseInt(numStr.replace(/,/g, ''), 10);
-      
-      return (
-        <>
-          {prefix && <span className="stat-highlight stat-prefix">{prefix}</span>}
-          {isVisible && !isNaN(num) ? (
-            <span className="stat-number-text"><Counter value={num} /></span>
-          ) : (
-             <span className="stat-number-text">{numStr}</span>
-          )}
-          {suffix && <span className="stat-highlight stat-suffix">{suffix}</span>}
-        </>
-      );
-    }
-    return <span className="stat-number-text">{val}</span>;
-  };
-
   return (
-    <section className="statistics-section" ref={sectionRef}>
-      {/* Extremely soft ambient background glow */}
-      <div className="stat-ambient-glow"></div>
-      
+    <section className="stats-band surface-dark" ref={sectionRef} aria-labelledby="stats-heading">
+      <h2 id="stats-heading" className="sr-only">
+        {t('stats_section_label')}
+      </h2>
       <div className="container">
-        <div className="stats-grid">
-          {stats.map((stat, idx) => (
-            <div 
-              key={stat.id} 
-              className={`stat-item ${isVisible ? 'animate-stat' : 'opacity-0'}`}
-              style={{ animationDelay: `${idx * 150}ms` }}
-            >
-              <div className="stat-icon-container">
-                {stat.icon}
-              </div>
-              
-              <div className="stat-number" dir="ltr">
-                {formatValue(stat.value)}
-              </div>
-              
-              <h3 className="stat-title">
-                {stat.label}
-              </h3>
+        <dl className="stats-row">
+          {stats.map((item) => (
+            <div key={item.id} className="stat-col">
+              <dt>{item.label}</dt>
+              <dd className="mono-data">
+                {item.num !== null ? (
+                  <>
+                    <Counter target={item.num} active={hasRevealed} />
+                    <span className="stat-suffix">{item.suffix}</span>
+                  </>
+                ) : (
+                  item.raw
+                )}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

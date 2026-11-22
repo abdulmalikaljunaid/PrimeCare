@@ -1,76 +1,95 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MonitorDot, FlaskConical, Microscope, Syringe, Wrench, GraduationCap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import './ServicesPreview.css';
 
-export const ServicesPreview = () => {
-  const { t } = useTranslation();
+export const ServicesPreview = ({ onNavigateCatalog }) => {
+  const { t, i18n } = useTranslation();
+  const isRtl = (i18n.language || 'ar').startsWith('ar');
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
-  const services = [
-    { 
-      id: '01',
-      icon: <MonitorDot size={28} />, 
-      title: t('srv_devices'), 
-      desc: t('srv_devices_desc') 
+  const pillars = [
+    {
+      step: '01',
+      title: t('srv_1_title'),
+      desc: t('srv_1_desc'),
+      points: [t('srv_1_p1'), t('srv_1_p2'), t('srv_1_p3')],
+      actionLabel: t('srv_1_action'),
+      href: '#devices',
+      targetTab: 'blood-gas',
     },
-    { 
-      id: '02',
-      icon: <FlaskConical size={28} />, 
-      title: t('srv_reagents'), 
-      desc: t('srv_reagents_desc') 
+    {
+      step: '02',
+      title: t('srv_2_title'),
+      desc: t('srv_2_desc'),
+      points: [t('srv_2_p1'), t('srv_2_p2'), t('srv_2_p3')],
+      actionLabel: t('srv_2_action'),
+      href: '#devices',
+      targetTab: 'hematology',
     },
-    { 
-      id: '03',
-      icon: <Microscope size={28} />, 
-      title: t('srv_lab'), 
-      desc: t('srv_lab_desc') 
-    },
-    { 
-      id: '04',
-      icon: <Syringe size={28} />, 
-      title: t('srv_consumables'), 
-      desc: t('srv_consumables_desc') 
-    },
-    { 
-      id: '05',
-      icon: <Wrench size={28} />, 
-      title: t('srv_maintenance'), 
-      desc: t('srv_maintenance_desc') 
-    },
-    { 
-      id: '06',
-      icon: <GraduationCap size={28} />, 
-      title: t('srv_training'), 
-      desc: t('srv_training_desc') 
+    {
+      step: '03',
+      title: t('srv_3_title'),
+      desc: t('srv_3_desc'),
+      points: [t('srv_3_p1'), t('srv_3_p2'), t('srv_3_p3')],
+      actionLabel: t('srv_3_action'),
+      href: '#contact',
+      targetTab: null,
     },
   ];
 
   return (
-    <section className="section services" id="services">
+    <section className="section services-section" id="services">
       <div className="container">
-        
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="badge-category mb-4">{t('nav_services')}</div>
-          <h2 className="section-title text-gradient" style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
-            {t('services_titleMain', 'Comprehensive Medical Solutions')}
-          </h2>
-          <p className="section-subtitle">{t('services_subtitle')}</p>
+        <div className="section-header-split">
+          <div>
+            <h2>{t('services_heading')}</h2>
+            <p>{t('services_subtitle')}</p>
+          </div>
+          <a href="#devices" className="btn btn-ghost">
+            <span>{t('services_cta')}</span>
+            <ArrowIcon size={16} aria-hidden="true" />
+          </a>
         </div>
-        
-        <div className="services-grid">
-          {services.map((service, idx) => (
-            <div key={idx} className={`service-card animate-fade-in delay-${(idx % 3 + 1) * 100}`}>
-              <div className="service-card-header">
-                <span className="service-number">{service.id}</span>
-                <div className="service-icon-wrapper">
-                   {service.icon}
-                </div>
+
+        <ol className="capability-ledger">
+          {pillars.map((pillar) => (
+            <li key={pillar.step} className="ledger-row">
+              <div className="ledger-step mono-data" aria-hidden="true">
+                {pillar.step}
               </div>
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-desc">{service.desc}</p>
-            </div>
+
+              <div className="ledger-summary">
+                <h3>{pillar.title}</h3>
+                <p>{pillar.desc}</p>
+              </div>
+
+              <ul className="ledger-points">
+                {pillar.points.map((point) => (
+                  <li key={point}>
+                    <Check size={16} className="ledger-check" aria-hidden="true" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="ledger-action">
+                <a
+                  href={pillar.href}
+                  className="ledger-link"
+                  onClick={() => {
+                    if (pillar.targetTab) {
+                      onNavigateCatalog?.(pillar.targetTab);
+                    }
+                  }}
+                >
+                  <span>{pillar.actionLabel}</span>
+                  <ArrowIcon size={15} aria-hidden="true" />
+                </a>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

@@ -1,340 +1,194 @@
-/* Partners.css - Ultra Compact Brand Identity */
-
-.partners-ultra {
-  padding: 4.5rem 0;
-  position: relative;
-  background-color: #ffffff; /* Ultra clean pure white */
-  overflow: hidden;
-  z-index: 1;
+.partners-section {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
-/* Very subtle background wash containing Brand Gold */
-.partners-bg-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255, 194, 13, 0.04) 0%, transparent 70%); /* Faint Gold */
-  pointer-events: none;
-  z-index: 0;
+.partners-group {
+  margin-block-end: 2.75rem;
 }
 
-/* Titles */
-.badge-sleek {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 1rem;
-  background: var(--primary); /* Full Brand Gold */
-  color: var(--secondary); /* Dark Charcoal text */
-  border-radius: var(--radius-full);
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  border: none;
-  font-family: var(--font-en);
-  box-shadow: 0 4px 12px rgba(255, 194, 13, 0.25); /* Gold glow */
-}
-
-.title-premium {
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  color: var(--secondary);
-}
-
-.subtitle-premium {
+.partners-subhead {
   font-size: 1.05rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-weight: 600;
+  color: var(--ink);
+  margin-block-end: 1.15rem;
+}
+
+/* Tier 1: Verified OEMs */
+.oem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.oem-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.35rem;
+  border-bottom: 1px solid var(--line);
+  border-inline-end: 1px solid var(--line);
+}
+
+.oem-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.oem-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.oem-country {
+  font-size: 0.8rem;
+  color: var(--gold-ink);
+  font-weight: 500;
+}
+
+.oem-specialty {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
   line-height: 1.6;
 }
 
-/* Track Titles */
-.track-container {
+.oem-models {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 10;
-  padding-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-block-start: auto;
 }
 
-.track-title {
-  font-family: var(--font-en);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--secondary); /* Brand Dark */
-  text-align: center;
-  margin-bottom: 0;
-  letter-spacing: 0.5px;
-  position: relative;
+.oem-models span {
+  padding: 0.18rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs);
+  background: var(--paper);
+  font-size: 0.75rem;
+  color: var(--ink-body);
 }
 
-[dir="rtl"] .track-title {
-  font-family: var(--font-ar);
-  letter-spacing: 0;
-}
-
-/* Subtle architectural side lines purely in Gold */
-.track-title::before,
-.track-title::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
-}
-
-/* Centering lines accurately */
-.track-title::before { right: calc(50% + 70px); }
-.track-title::after { left: calc(50% + 70px); }
-
-@media (max-width: 768px) {
-  .track-title::before { width: 40px; right: calc(50% + 55px); }
-  .track-title::after { width: 40px; left: calc(50% + 55px); }
-}
-
-/* Carousel Container */
-.carousel-ultra-wrapper {
-  position: relative;
-  width: 100%;
-  padding: 1rem 0; /* Reduced vertical padding since there's no lift and dropshadow is tight */
-  display: flex;
-  overflow: hidden;
-  /* NO mask-image: cards stay 100% solid until the absolute screen edge */
-}
-
-/* Carousel Track & Groups */
-.carousel-ultra-track {
-  display: flex;
-  width: max-content;
-  /* No more flex-direction: row-reverse */
-}
-
-.carousel-group {
-  display: flex;
-  justify-content: space-around;
-  /* No internal row-reverse, keeping exact natural flow */
-}
-
-/* Perfect Infinite Seamless Animations */
-
-/* LTR Direction */
-@keyframes slideLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); } 
-}
-@keyframes slideRight {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-/* RTL Direction */
-/* In RTL flex layouts, translation right visually moves items to the right */
-@keyframes slideRightRTL {
-  from { transform: translateX(0); }
-  to { transform: translateX(50%); }
-}
-@keyframes slideLeftRTL {
-  from { transform: translateX(50%); }
-  to { transform: translateX(0); }
-}
-
-/* Applying Directions */
-.is-ltr .track-forwards { animation: slideLeft 40s linear infinite; }
-.is-ltr .track-reverse { animation: slideRight 55s linear infinite; } /* Slower */
-
-.is-rtl .track-forwards { animation: slideRightRTL 40s linear infinite; }
-.is-rtl .track-reverse { animation: slideLeftRTL 55s linear infinite; } /* Slower */
-
-/* 
-  SUPER COMPACT CARD
-  Extremely small height, sharp design, full visibility
-*/
-.partner-sleek-card {
-  width: 200px; /* Extremely small */
-  height: 52px; /* Super thin! */
-  margin: 0 0.75rem; /* Very tight gaps */
-  background: #ffffff;
-  border: 1px solid #e2e8f0; 
-  border-radius: 8px; /* Sharper corporate edge */
-  padding: 0 0.6rem;
-  display: flex;
-  flex-direction: row; 
+.oem-link {
+  display: inline-flex;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03); /* Extremely subtle natural shadow */
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  z-index: 2;
-  gap: 0.6rem;
-}
-
-.partner-sleek-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(255, 194, 13, 0.15); /* Sleek gold lift */
-  border-color: rgba(255, 194, 13, 0.6); /* Brand Gold border */
-  z-index: 10;
-}
-
-/* Internal hover sweeping light */
-.partner-sleek-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255, 194, 13, 0.12) 50%, rgba(255,255,255,0) 100%);
-  transform: translateX(-100%) skewX(-15deg);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.partner-sleek-card:hover::after {
-  transform: translateX(200%) skewX(-15deg);
-  opacity: 1;
-}
-
-/* Logo/Icon Container */
-.partner-sleek-icon-wrapper {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: #f8fafc;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-}
-
-.partner-sleek-card:hover .partner-sleek-icon-wrapper {
-  background: var(--primary-light); /* Soft brand gold tint */
-  border-color: rgba(255, 194, 13, 0.4);
-}
-
-/* Images: Full Color & Fully Visible always! */
-.partner-sleek-image {
-  max-width: 22px;
-  max-height: 22px;
-  object-fit: contain;
-  /* NO GRAYSCALE - User wants constant visibility and color */
-  transition: all 0.3s ease;
-  mix-blend-mode: multiply;
-}
-
-.partner-sleek-card:hover .partner-sleek-image {
-  transform: scale(1.15); /* Small pop */
-}
-
-/* SVGs: Starts Dark Charcoal, turns Gold */
-.partner-sleek-icon {
-  color: var(--secondary); /* Dark Charcoal */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.partner-sleek-card:hover .partner-sleek-icon {
-  color: #E5AE00; /* Rich Gold */
-  transform: scale(1.15);
-}
-
-/* Text Content */
-.partner-sleek-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: start;
-  overflow: hidden; /* Prevent text overflow */
-  width: 100%;
-}
-
-.partner-sleek-title {
-  font-family: var(--font-en);
-  font-size: 0.85rem; /* Super compact typography */
-  font-weight: 800;
-  color: var(--secondary); /* Brand Dark Charcoal */
-  margin: 0 0 0.1rem 0;
-  transition: color 0.3s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-}
-
-/* Arabic override */
-[dir="rtl"] .partner-sleek-title {
-  font-family: var(--font-ar);
-  font-size: 0.8rem;
-}
-
-.partner-sleek-card:hover .partner-sleek-title {
-  color: #110F10; /* Darken safely */
-}
-
-.partner-sleek-desc {
-  font-size: 0.55rem;
-  color: #64748b; /* Slate 500 */
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  gap: 0.4rem;
+  font-size: 0.86rem;
   font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  padding-block-start: 0.65rem;
+  border-top: 1px solid var(--line);
+  min-height: 36px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .partners-ultra {
-    padding: 3rem 0;
-  }
-  
-  .track-title {
-    font-size: 1rem;
-  }
+.oem-link:hover {
+  color: var(--gold-ink);
+  text-decoration: underline;
+}
 
-  .partner-sleek-card {
-    width: 180px; /* Super small for mobile */
-    height: 48px;
-    padding: 0 0.5rem;
-    gap: 0.5rem;
-    margin: 0 0.4rem;
-  }
-  
-  .partner-sleek-icon-wrapper {
-    width: 28px;
-    height: 28px;
-    border-radius: 5px;
-  }
-  
-  .partner-sleek-image {
-    max-width: 18px;
-    max-height: 18px;
-  }
-  
-  .partner-sleek-title {
-    font-size: 0.75rem;
-  }
-  
-  [dir="rtl"] .partner-sleek-title {
-    font-size: 0.75rem;
-  }
+/* Tier 2: Named Yemeni Clients */
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
 
-  .partner-sleek-desc {
-    font-size: 0.5rem;
+.client-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.05rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.client-mark {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.client-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.client-meta h4 {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-block-end: 0.15rem;
+}
+
+.client-meta p {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* Compatible Reagents Footnote */
+.compat-footnote {
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.compat-head h4 {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-block-end: 0.2rem;
+}
+
+.compat-head p {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.compat-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.compat-list span {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xs);
+  background: var(--paper);
+  font-size: 0.78rem;
+  color: var(--ink-body);
+}
+
+@media (max-width: 1080px) {
+  .oem-grid,
+  .clients-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .is-ltr .track-forwards,
-  .is-rtl .track-forwards {
-    animation-duration: 35s; 
-  }
-  
-  .is-ltr .track-reverse,
-  .is-rtl .track-reverse {
-    animation-duration: 45s; /* Slower on mobile too */
+}
+
+@media (max-width: 600px) {
+  .oem-grid,
+  .clients-grid {
+    grid-template-columns: 1fr;
   }
 }

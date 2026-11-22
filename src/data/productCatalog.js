@@ -1,0 +1,452 @@
+import pce210Image from '../assets/products/pce-210-hero.webp';
+import optiImage from '../assets/products/official/opti-cca-ts2-official.webp';
+import iCheckImage from '../assets/products/icheck-200-hero.webp';
+import iSmartCareImage from '../assets/products/official/ismartcare-10-official.webp';
+import a1CareImage from '../assets/products/official/a1care-official.webp';
+import c102Image from '../assets/products/official/c-102-official.webp';
+import hematologyFamilyImage from '../assets/products/catalog/hematology-family.webp';
+import electrolyteFamilyImage from '../assets/products/catalog/electrolyte-family.webp';
+import cliaFamilyImage from '../assets/products/catalog/clia-family.webp';
+import hba1cFamilyImage from '../assets/products/catalog/hba1c-family.webp';
+import chemistryFamilyImage from '../assets/products/catalog/chemistry-family.webp';
+import veterinaryFamilyImage from '../assets/products/catalog/veterinary-family.webp';
+
+const bi = (ar, en) => ({ ar, en });
+const spec = (arLabel, enLabel, arValue, enValue) => ({
+  label: bi(arLabel, enLabel),
+  value: bi(arValue, enValue),
+});
+
+export const productGroups = [
+  {
+    id: 'hematology',
+    title: bi('أمراض الدم والتخثر', 'Hematology & Coagulation'),
+    description: bi(
+      'حلول موثّقة للعدّ الدموي الكامل واختبارات التخثر للمختبرات الروتينية والمتخصصة.',
+      'Documented systems for complete blood count and coagulation testing in routine and specialized laboratories.',
+    ),
+    productIds: ['pce-210', 'c-102'],
+  },
+  {
+    id: 'blood-gas',
+    title: bi('غازات الدم والإلكتروليتات', 'Blood Gas & Electrolytes'),
+    description: bi(
+      'أنظمة مكتبية ومحمولة ببطارية داخلية للعناية المركزة وغرف العمليات والطوارئ ونقاط الرعاية.',
+      'Battery-backed benchtop and portable analyzers for ICU, operating rooms, emergency, and point-of-care units.',
+    ),
+    productIds: ['ismartcare-10', 'opti-cca-ts2', 'icheck-200'],
+  },
+  {
+    id: 'diabetes-renal',
+    title: bi('السكري ووظائف الكلى', 'Diabetes & Renal Screening'),
+    description: bi(
+      'فحوصات السكر التراكمي HbA1c ونسبة الألبومين إلى الكرياتينين ACR من منصة واحدة معتمدة.',
+      'Certified HbA1c and albumin-to-creatinine ratio (ACR) testing from a single benchtop platform.',
+    ),
+    productIds: ['a1care'],
+  },
+];
+
+export const products = [
+  {
+    id: 'ismartcare-10',
+    groupId: 'blood-gas',
+    name: 'i-SmartCare 10',
+    category: bi('محلل غازات دم مكتبي', 'Benchtop Blood Gas Analyzer'),
+    manufacturer: 'i-SENS',
+    origin: bi('كوريا الجنوبية', 'South Korea'),
+    image: iSmartCareImage,
+    imageWidth: 1360,
+    imageHeight: 1200,
+    imageAlt: bi('جهاز i-SmartCare 10 المكتبي لغازات الدم والإلكتروليتات', 'i-SmartCare 10 benchtop blood gas analyzer'),
+    sourceUrl: 'https://i-sens.com/products/i-smartcare-10/',
+    certifications: ['CE', 'HL7', 'POCT1-A'],
+    heroFeatured: true,
+    heroTagline: bi('خرطوشة CarePak متكاملة ونتيجة خلال 50 ثانية', 'All-in-one CarePak cartridge with 50-second turnaround'),
+    summary: bi(
+      'محلل سريع يعتمد خرطوشة متكاملة تحتوي جميع الكواشف والمستهلكات، مع معايرة آلية واتصال مؤسسي كامل وبطارية احتياطية.',
+      'Rapid analyzer with an all-in-one cartridge containing all reagents and consumables, automated calibration, enterprise LIS connectivity, and backup battery.',
+    ),
+    highlights: [
+      bi('خرطوشة CarePak متكاملة تقلّل الصيانة اليومية إلى الحد الأدنى', 'All-in-one CarePak cartridge minimizing daily maintenance'),
+      bi('مسبار ذكي ذاتي التنظيف وماسح باركود مدمج', 'Self-cleaning smart probe with built-in barcode scanner'),
+      bi('تكامل ثنائي الاتجاه مع LIS/HIS عبر POCT1-A وHL7', 'Bi-directional LIS/HIS integration via POCT1-A and HL7'),
+    ],
+    specs: [
+      spec('زمن النتيجة', 'Turnaround', '50 ثانية', '50 seconds'),
+      spec('حجم العينة', 'Sample volume', '100 µL', '100 µL'),
+      spec('البطارية والتشغيل', 'Battery runtime', 'تشغيل حتى ساعتين', 'Up to 2 hours'),
+      spec('الشاشة والاتصال', 'Display & LIS', 'لمس 9 بوصات · HL7', '9" touch · HL7'),
+    ],
+    compare: {
+      turnaround: bi('50 ثانية', '50 seconds'),
+      sampleVolume: bi('100 µL دم كامل', '100 µL whole blood'),
+      power: bi('بطارية داخلية حتى ساعتين', 'Internal battery up to 2 hrs'),
+      connectivity: bi('LIS/HIS ثنائي · POCT1-A · HL7', 'Bi-directional LIS/HIS · POCT1-A · HL7'),
+      bestFor: bi('العناية المركزة وغرف العمليات والمختبرات المركزية', 'ICU, operating rooms & central labs'),
+    },
+    keywords: 'abg blood gas electrolyte isens carepak icu hl7 poct ph pco2 po2 lactate',
+    documents: [{ label: bi('بروشور الجهاز', 'Product brochure'), href: '/docs/ismartcare-10.pdf', size: '6.2 MB' }],
+  },
+  {
+    id: 'opti-cca-ts2',
+    groupId: 'blood-gas',
+    name: 'OPTI CCA-TS2',
+    category: bi('محلل غازات دم محمول', 'Portable Blood Gas Analyzer'),
+    manufacturer: 'OPTI Medical Systems',
+    origin: bi('الولايات المتحدة', 'United States'),
+    image: optiImage,
+    imageWidth: 750,
+    imageHeight: 750,
+    blendMultiply: true,
+    imageAlt: bi('جهاز OPTI CCA-TS2 المحمول لغازات الدم والإلكتروليتات', 'OPTI CCA-TS2 portable blood gas and electrolyte analyzer'),
+    sourceUrl: 'https://www.optimedical.com/en/products-and-services/analyzers/opti-cca-ts2-analyzer/',
+    certifications: ['CE', 'Optical Fluorescence'],
+    heroFeatured: true,
+    heroTagline: bi('كاسيت أحادي الاستخدام وقياس بصري مباشر لـ tHb وsO₂', 'Single-use cassette with direct optical tHb & sO₂'),
+    summary: bi(
+      'منصة محمولة بتقنية الفلورة البصرية وكاسيت أحادي الاستخدام بلا كواشف سائلة، مصممة لموثوقية عالية في الطوارئ والعمليات.',
+      'Portable optical fluorescence platform with single-use cassettes and zero liquid reagents, engineered for high uptime in emergency and critical care.',
+    ),
+    highlights: [
+      bi('شفط آلي للعينة مع كشف فوري للفقاعات والجلطات', 'Automatic sample aspiration with bubble and clot detection'),
+      bi('قياس مباشر لـ tHb وsO₂ بالانعكاس البصري', 'Direct tHb and sO₂ measurement via optical reflectance'),
+      bi('تكامل ثنائي الاتجاه مع LIS/HIS عبر Ethernet', 'Bi-directional LIS/HIS connectivity over Ethernet'),
+    ],
+    specs: [
+      spec('زمن النتيجة', 'Turnaround', 'أقل من 120 ثانية', 'Under 120 seconds'),
+      spec('حجم العينة', 'Sample volume', '125 µL (أو 60 µL لكاسيت B-60)', '125 µL (60 µL w/ B-60)'),
+      spec('الوزن والبطارية', 'Weight & battery', '4.3 كجم مع البطارية', '4.3 kg with battery'),
+      spec('العينات', 'Sample types', 'دم كامل / بلازما / مصل', 'Whole blood / plasma / serum'),
+    ],
+    compare: {
+      turnaround: bi('أقل من 120 ثانية', '< 120 seconds'),
+      sampleVolume: bi('60–125 µL (دم كامل / بلازما / مصل)', '60–125 µL (WB / plasma / serum)'),
+      power: bi('محمول ببطارية داخلية (4.3 كجم)', 'Portable with battery (4.3 kg)'),
+      connectivity: bi('LIS/HIS ثنائي عبر Ethernet', 'Bi-directional LIS/HIS via Ethernet'),
+      bestFor: bi('الطوارئ والعناية المركزة ووحدات القسطرة', 'Emergency, ICU & cath labs'),
+    },
+    keywords: 'abg blood gas opti cca ts2 optical fluorescence thb so2 electrolyte cassette',
+    documents: [{ label: bi('المواصفات الرسمية', 'Official specifications'), href: '/docs/opti-cca-ts2.pdf', size: '11.0 MB' }],
+  },
+  {
+    id: 'a1care',
+    groupId: 'diabetes-renal',
+    name: 'A1Care',
+    category: bi('محلل HbA1c وACR', 'HbA1c & ACR Analyzer'),
+    manufacturer: 'i-SENS',
+    origin: bi('كوريا الجنوبية', 'South Korea'),
+    image: a1CareImage,
+    imageWidth: 1360,
+    imageHeight: 1200,
+    imageAlt: bi('جهاز A1Care لتحليل السكر التراكمي HbA1c وACR', 'A1Care HbA1c and ACR analyzer'),
+    sourceUrl: 'https://i-sens.com/products/a1care/',
+    certifications: ['NGSP', 'IFCC', 'CE'],
+    heroFeatured: true,
+    heroTagline: bi('فحص HbA1c إنزيمي معتمد من NGSP وIFCC بعينة 2.5 µL', 'NGSP & IFCC certified enzymatic HbA1c from 2.5 µL'),
+    summary: bi(
+      'منصة مكتبية مدمجة لفحص السكر التراكمي ونسبة الألبومين إلى الكرياتينين بدون تحضير مسبق للعينة أو استخدام الماصة.',
+      'Compact dual-assay platform for glycated hemoglobin and albumin-to-creatinine ratio testing with no sample pretreatment or pipetting.',
+    ),
+    highlights: [
+      bi('اختبار HbA1c إنزيمي معتمد عالمياً من NGSP وIFCC', 'NGSP- and IFCC-certified enzymatic HbA1c methodology'),
+      bi('بدون معالجة مسبقة للعينة أو ماصات يدوية لتقليل أخطاء التحضير', 'Zero sample pretreatment or manual pipetting'),
+      bi('ذاكرة 5,000 نتيجة مع منافذ USB وRS232 وLAN', '5,000-result storage with USB, RS232, and LAN'),
+    ],
+    specs: [
+      spec('زمن HbA1c', 'HbA1c test', '2.5 µL خلال 4:20 د', '2.5 µL in 4:20 min'),
+      spec('زمن ACR', 'ACR test', '40 µL بول خلال 7 د', '40 µL urine in 7 min'),
+      spec('الوزن والشاشة', 'Display & weight', 'لمس 7 بوصات · 3.8 كجم', '7" touch · 3.8 kg'),
+      spec('الاتصال', 'Connectivity', 'USB · RS232 · LAN', 'USB · RS232 · LAN'),
+    ],
+    compare: {
+      turnaround: bi('4:20 د (HbA1c) / 7 د (ACR)', '4:20 min (HbA1c) / 7 min (ACR)'),
+      sampleVolume: bi('2.5 µL دم / 40 µL بول', '2.5 µL blood / 40 µL urine'),
+      power: bi('مكتبي مدمج (3.8 كجم)', 'Compact benchtop (3.8 kg)'),
+      connectivity: bi('USB · RS232 · LAN (5,000 نتيجة)', 'USB · RS232 · LAN (5,000 results)'),
+      bestFor: bi('عيادات السكري ومختبرات المتابعة الدورية', 'Diabetes clinics & outpatient labs'),
+    },
+    keywords: 'hba1c acr diabetes renal albumin creatinine ngsp ifcc isens enzymatic',
+    documents: [{ label: bi('بروشور الجهاز', 'Product brochure'), href: '/docs/a1care.pdf', size: '252 KB' }],
+  },
+  {
+    id: 'icheck-200',
+    groupId: 'blood-gas',
+    name: 'i-Check 200',
+    category: bi('محلل غازات دم يدوي POCT', 'Hand-Held POCT Blood Gas Analyzer'),
+    manufacturer: 'B&E Bio-Technology',
+    origin: bi('الصين', 'China'),
+    image: iCheckImage,
+    imageWidth: 800,
+    imageHeight: 800,
+    imageAlt: bi('جهاز i-Check 200 اليدوي المحمول لغازات الدم', 'i-Check 200 hand-held blood gas analyzer'),
+    certifications: ['CE', 'POCT', 'SOP Ready'],
+    summary: bi(
+      'جهاز يدوي محمول لنقاط الرعاية يدعم حتى 11 معلمة من غازات الدم والإلكتروليتات والمستقلبات مع دليل تشغيل قياسي SOP.',
+      'Hand-held point-of-care analyzer supporting up to 11 blood gas, electrolyte, and metabolite parameters with full SOP documentation.',
+    ),
+    highlights: [
+      bi('مصمم للعيادات والعناية المركزة وغرف العمليات وسيارات الإسعاف', 'Built for clinics, ICU, OR, and ambulance response'),
+      bi('خيارات كاسيت متعددة: BG3، BE3، BG7، BG10-I، BG10-II', 'Configurable cartridges: BG3, BE3, BG7, BG10-I, BG10-II'),
+      bi('نقل النتائج إلى LIS/HIS عبر Wi-Fi أو القاعدة الطابعة', 'LIS/HIS upload over Wi-Fi or serial printer dock'),
+    ],
+    specs: [
+      spec('زمن النتيجة', 'Turnaround', '3.5 إلى 4 دقائق', '3.5 to 4 minutes'),
+      spec('حجم العينة', 'Sample volume', '95 µL كحد أدنى', '95 µL minimum'),
+      spec('البطارية', 'Battery', 'حتى 50 فحصاً متتالياً', 'Up to 50 consecutive tests'),
+      spec('المعلمات', 'Panel', 'حتى 11 معلمة مقاسة', 'Up to 11 measured parameters'),
+    ],
+    compare: {
+      turnaround: bi('3.5 – 4 دقائق', '3.5 – 4 minutes'),
+      sampleVolume: bi('95 µL دم كامل', '95 µL whole blood'),
+      power: bi('يدوي ببطارية حتى 50 فحصاً', 'Hand-held battery (50 tests)'),
+      connectivity: bi('Wi-Fi + قاعدة طابعة تسلسلية LIS/HIS', 'Wi-Fi + serial printer dock LIS/HIS'),
+      bestFor: bi('سيارات الإسعاف والعيادات الميدانية والطوارئ', 'Ambulances, clinics & bedside POCT'),
+    },
+    keywords: 'abg blood gas handheld portable poct icheck 200 be cartridge sop electrolyte',
+    documents: [
+      { label: bi('بروشور الجهاز', 'Product brochure'), href: '/docs/icheck-200.pdf', size: '2.1 MB' },
+      { label: bi('دليل التشغيل SOP', 'Operating SOP'), href: '/docs/icheck-200-sop.pdf', size: '5.7 MB' },
+    ],
+  },
+  {
+    id: 'pce-210',
+    groupId: 'hematology',
+    name: 'PCE-210+',
+    category: bi('محلل دم ثلاثي التفريق', '3-Part Hematology Analyzer'),
+    manufacturer: 'AGD Biomedicals',
+    origin: bi('الهند', 'India'),
+    image: pce210Image,
+    imageWidth: 800,
+    imageHeight: 800,
+    imageAlt: bi('جهاز PCE-210+ لتحليل صورة الدم الكاملة CBC', 'PCE-210+ complete blood count analyzer'),
+    certifications: ['CE', '3-Level QC'],
+    summary: bi(
+      'محلل CBC عملي للمختبرات الروتينية يجمع بين 22 معلمة قابلة للتقرير، عينة صغيرة 10 µL، شاشة لمس، وطابعة حرارية مدمجة.',
+      'Dependable CBC analyzer for routine laboratories combining 22 reportable parameters, 10 µL sample volume, touchscreen, and built-in thermal printer.',
+    ),
+    highlights: [
+      bi('تقنية المعاوقة الكهربائية لعدّ WBC وRBC وPLT بدقة مستقرة', 'Electrical impedance for accurate WBC, RBC, and PLT counts'),
+      bi('تخزين 20,000 نتيجة مريض مع الرسوم البيانية (Histograms)', 'Stores 20,000 patient results with histograms'),
+      bi('معايرة يدوية وآلية مع ضبط جودة ثلاثي المستويات', 'Manual/auto calibration with tri-level quality control'),
+    ],
+    specs: [
+      spec('المخرجات', 'Output', '22 معلمة قابلة للتقرير', '22 reportable parameters'),
+      spec('حجم العينة', 'Sample volume', '10 µL دم كامل', '10 µL whole blood'),
+      spec('الشاشة', 'Display', 'لمس ملونة 8 بوصات', '8-inch color touchscreen'),
+      spec('الاتصال', 'Connectivity', 'USB وRS232', 'USB and RS232'),
+    ],
+    compare: {
+      turnaround: bi('22 معلمة CBC + رسوم بيانية', '22 CBC parameters + histograms'),
+      sampleVolume: bi('10 µL دم كامل', '10 µL whole blood'),
+      power: bi('مكتبي مع طابعة حرارية مدمجة', 'Benchtop with built-in printer'),
+      connectivity: bi('USB · RS232 (ذاكرة 20,000)', 'USB · RS232 (20,000 memory)'),
+      bestFor: bi('المختبرات الروتينية والمراكز الطبية اليومية', 'Routine labs & medical centers'),
+    },
+    keywords: 'cbc hematology blood count wbc rbc plt pce 210 agd 3-part',
+    documents: [{ label: bi('بروشور الجهاز', 'Product brochure'), href: '/docs/pce-210.pdf', size: '200 KB' }],
+  },
+  {
+    id: 'c-102',
+    groupId: 'hematology',
+    name: 'C-102',
+    category: bi('محلل تخثر شبه آلي', 'Semi-Automated Coagulation Analyzer'),
+    manufacturer: 'AGD Biomedicals',
+    origin: bi('الهند', 'India'),
+    image: c102Image,
+    imageWidth: 1024,
+    imageHeight: 1024,
+    imageAlt: bi('جهاز C-102 لتحليل تخثر الدم PT وAPTT', 'C-102 blood coagulation analyzer'),
+    sourceUrl: 'https://agdbio.com/product/c-102-coagulation-analyzer/',
+    certifications: ['CE'],
+    summary: bi(
+      'نظام اقتصادي صغير المساحة لاختبارات التخثر الأساسية (PT، APTT، TT، FIB)، مثالي للمختبرات المتوسطة أو كجهاز احتياطي.',
+      'Compact, economical analyzer for core coagulation assays (PT, APTT, TT, FIB), ideal for mid-volume labs or reliable backup.',
+    ),
+    highlights: [
+      bi('مبدأ قياس توربو-كثافي بصري وميكانيكي موثوق', 'Optical and mechanical turbo-densitometric measurement'),
+      bi('قناة قياس واحدة وموضعان للكواشف وأربعة للعينات عند 37°C', '1 test channel, 2 reagent positions, and 4 sample wells at 37°C'),
+      bi('طابعة حرارية مدمجة وصيانة تشغيلية منخفضة الكلفة', 'Built-in thermal printer with low routine maintenance'),
+    ],
+    specs: [
+      spec('الاختبارات', 'Assays', 'PT · APTT · TT · FIB', 'PT · APTT · TT · FIB'),
+      spec('الحرارة', 'Incubation', '37°C ± 0.4', '37°C ± 0.4'),
+      spec('الذاكرة', 'Memory', '1,000 نتيجة', '1,000 results'),
+      spec('الاتصال', 'Connectivity', 'USB وRS232', 'USB and RS232'),
+    ],
+    compare: {
+      turnaround: bi('فحوصات PT · APTT · TT · FIB', 'PT · APTT · TT · FIB assays'),
+      sampleVolume: bi('بلازما (4 مواضع تحضين 37°C)', 'Plasma (4 wells at 37°C)'),
+      power: bi('مكتبي مدمج مع طابعة حرارية', 'Compact benchtop w/ thermal printer'),
+      connectivity: bi('USB · RS232 (ذاكرة 1,000)', 'USB · RS232 (1,000 memory)'),
+      bestFor: bi('مختبرات الجراحة والعيادات أو كجهاز احتياطي', 'Surgical labs, clinics & backup units'),
+    },
+    keywords: 'coagulation pt aptt tt fib inr c-102 c102 agd',
+    documents: [{ label: bi('بروشور الجهاز', 'Product brochure'), href: '/docs/c-102.pdf', size: '194 KB' }],
+  },
+];
+
+export const catalogFamilies = [
+  {
+    id: 'be-hematology',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('تحاليل الدم', 'Hematology'),
+    title: bi('عائلة Hemax لتحليل الدم', 'Hemax Hematology Family'),
+    image: hematologyFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز Hemax 53 لتحليل الدم', 'Hemax 53 hematology analyzer'),
+    models: ['Hemax 33', 'Hemax 33 P/C', 'Hemax 53', 'Hemax 53+FI', 'Hemax 530AL', 'Hemax 60'],
+    facts: [
+      bi('خيارات تفريق ثلاثي وخماسي وسداسي الأجزاء', '3-part, 5-part, and 6-part differentiation options'),
+      bi('إنتاجية من 40 إلى 80 عينة/ساعة حسب الموديل', '40 to 80 samples/hour depending on model'),
+      bi('اتصال LIS/HIS وتقنيات معاوقة وتدفق خلوي وفلورة', 'LIS/HIS with impedance, flow cytometry, and fluorescence'),
+    ],
+    keywords: 'hemax cbc hematology 3-part 5-part 6-part flow cytometry be',
+  },
+  {
+    id: 'be-electrolytes',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('الإلكتروليتات', 'Electrolytes'),
+    title: bi('محللات CBS وKS للإلكتروليتات', 'CBS & KS Electrolyte Analyzers'),
+    image: electrolyteFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز CBS لتحليل الإلكتروليتات', 'CBS electrolyte analyzer'),
+    models: ['CBS-300/400/500', 'CBS-30/40/50', 'CBS-3/4/5', 'CBS-4000', 'KS-401/402'],
+    facts: [
+      bi('أقطاب متعددة المعلمات تعتمد تقنية المستشعر الحيوي', 'Multi-parameter biosensor electrodes'),
+      bi('إنتاجية 60 إلى 100 عينة/ساعة حسب الموديل', '60 to 100 samples/hour depending on model'),
+      bi('حزم كواشف متكاملة وخيارات تحميل آلي للعينات', 'All-in-one reagent packs with autoloader options'),
+    ],
+    keywords: 'electrolyte ise na k cl ca cbs ks biosensor be',
+  },
+  {
+    id: 'be-clia',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('المناعة ونقاط الرعاية', 'Immunoassay & POCT'),
+    title: bi('نظام lumiSTAT A8 CLIA', 'lumiSTAT A8 CLIA System'),
+    image: cliaFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز lumiSTAT A8 للمناعة الكيميائية المضيئة', 'lumiSTAT A8 chemiluminescence analyzer'),
+    models: ['lumiSTAT A8'],
+    facts: [
+      bi('يدعم أكثر من 100 فحص مناعة كيميائية مضيئة CLIA', 'Supports more than 100 CLIA test items'),
+      bi('إنتاجية تصل إلى 32 اختباراً/ساعة', 'Throughput up to 32 tests/hour'),
+      bi('يشمل NT-proBNP وhs-cTnI وCK-MB وD-Dimer وPCT وIL-6', 'Menu covers NT-proBNP, hs-cTnI, CK-MB, D-Dimer, PCT, IL-6'),
+    ],
+    keywords: 'clia immunoassay lumistat a8 troponin d-dimer pct il-6 cardiac hormone be',
+  },
+  {
+    id: 'be-hba1c',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('السكر التراكمي', 'Glycated Hemoglobin'),
+    title: bi('عائلة G لتحليل HbA1c بتقنية HPLC', 'G-Series HPLC HbA1c Analyzers'),
+    image: hba1cFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز G21 لتحليل السكر التراكمي HPLC', 'G21 glycated hemoglobin HPLC analyzer'),
+    models: ['G20', 'G21', 'G60', 'G80'],
+    facts: [
+      bi('تقنية HPLC القياسية الذهبية عالية الدقة', 'Gold-standard HPLC methodology'),
+      bi('تحليل HbA1c وHbF وHbA2 وخيارات للثلاسيميا بيتا', 'HbA1c, HbF, HbA2, and beta-thalassemia options'),
+      bi('زمن تحليل من دقيقة إلى ثلاث دقائق حسب الموديل', '1 to 3 minutes per sample depending on model'),
+    ],
+    keywords: 'hba1c hplc g20 g21 g60 g80 thalassemia hbf hba2 diabetes be',
+  },
+  {
+    id: 'be-chemistry',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('الكيمياء الحيوية', 'Clinical Chemistry'),
+    title: bi('محلل الكيمياء الحيوية BC-200', 'BC-200 Chemistry Analyzer'),
+    image: chemistryFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز BC-200 للكيمياء الحيوية', 'BC-200 clinical chemistry analyzer'),
+    models: ['BC-200'],
+    facts: [
+      bi('200 اختبار/ساعة بدون ISE، وحتى 450 مع K وNa وCl وCa', '200 tests/hr without ISE, up to 450 with K, Na, Cl, Ca'),
+      bi('40 موضعاً للعينات والكواشف مع تبريد مستمر', '40 sample/reagent positions with continuous refrigeration'),
+      bi('حجم عينة 2–50 µL و60 موضع تفاعل', '2–50 µL sample volume and 60 reaction cuvettes'),
+    ],
+    keywords: 'chemistry biochemistry bc-200 bc200 ise liver kidney lipid be',
+  },
+  {
+    id: 'be-veterinary',
+    manufacturer: 'B&E Bio-Technology',
+    category: bi('التشخيص البيطري', 'Veterinary IVD'),
+    title: bi('حلول المختبرات البيطرية', 'Veterinary Laboratory Solutions'),
+    image: veterinaryFamilyImage,
+    imageWidth: 760,
+    imageHeight: 560,
+    imageAlt: bi('جهاز V-Lab للكيمياء البيطرية', 'V-Lab veterinary chemistry analyzer'),
+    models: ['Hemax 330VET', 'Hemax 33VET', 'Hemax 53VET', 'i-Check VET', 'CBS-40 VET', 'V-Lab'],
+    facts: [
+      bi('تحاليل دم وإلكتروليتات وغازات دم وكيمياء للحيوانات', 'Hematology, electrolytes, blood gas, and chemistry for animals'),
+      bi('يدعم أنواعاً متعددة تشمل القطط والكلاب والخيول والأبقار', 'Multi-species profiles for feline, canine, equine, and bovine'),
+      bi('خيارات نقاط رعاية مدمجة وسهلة التشغيل', 'Compact, intuitive point-of-care options'),
+    ],
+    keywords: 'veterinary vet animal v-lab hemax vet icheck vet be',
+  },
+];
+
+export const verifiedManufacturers = [
+  {
+    id: 'isens',
+    name: 'i-SENS',
+    code: 'KR',
+    country: bi('كوريا الجنوبية', 'South Korea'),
+    specialty: bi('غازات الدم المكتبية وتحليل السكر التراكمي HbA1c/ACR', 'Benchtop Blood Gas & Enzymatic HbA1c/ACR'),
+    models: ['i-SmartCare 10', 'A1Care'],
+    searchTerm: 'i-SENS',
+  },
+  {
+    id: 'opti',
+    name: 'OPTI Medical',
+    code: 'US',
+    country: bi('الولايات المتحدة', 'United States'),
+    specialty: bi('أنظمة غازات الدم البصرية المحمولة للعناية الحرجة', 'Portable Optical Fluorescence Blood Gas Systems'),
+    models: ['OPTI CCA-TS2'],
+    searchTerm: 'OPTI',
+  },
+  {
+    id: 'agd',
+    name: 'AGD Biomedicals',
+    code: 'IN',
+    country: bi('الهند', 'India'),
+    specialty: bi('محللات أمراض الدم CBC وأنظمة التخثر المخبرية', 'Hematology (CBC) & Coagulation Analyzers'),
+    models: ['PCE-210+', 'C-102'],
+    searchTerm: 'AGD',
+  },
+  {
+    id: 'be',
+    name: 'B&E Bio-Technology',
+    code: 'CN',
+    country: bi('الصين', 'China'),
+    specialty: bi('حلول IVD الشاملة: الدم، المناعة CLIA، HPLC، الكيمياء، والكواشف المتوافقة', 'Integrated IVD: Hematology, CLIA, HPLC, Chemistry & Reagents'),
+    models: ['i-Check 200', 'Hemax', 'lumiSTAT A8', 'BC-200'],
+    searchTerm: 'B&E',
+  },
+];
+
+export const compatibleReagents = {
+  id: 'be-compatible-reagents',
+  title: bi('كواشف متوافقة لتحاليل الدم (B&E)', 'Compatible Hematology Reagents (B&E)'),
+  description: bi(
+    'نوفر كواشف تحاليل دم متوافقة ومختبرة الجودة للعمل مع الأنظمة المنتشرة في المختبرات، وتُحدَّد الملاءمة النهائية حسب موديل الجهاز وإصدار الكاشف.',
+    'Quality-verified compatible hematology reagents engineered for major installed laboratory platforms; final fit is confirmed by analyzer model and reagent version.',
+  ),
+  systems: [
+    'Sysmex KX21 / XE2000 / XS800i / XS1000i / XT1800i / XN-L',
+    'Mindray BC6800 / 5800 / 5380 / 5150 / 5000 / 3000 / 2800 / 1800',
+    'Nihon Kohden MEK Series',
+    'Abbott CELL-DYN Series',
+    'Horiba ABX · Beckman Coulter · Swelab · Medonic',
+  ],
+};
+
+export const catalogDocument = {
+  href: '/docs/be-product-catalogue.pdf',
+  size: '15.3 MB',
+};
